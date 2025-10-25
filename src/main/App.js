@@ -11,7 +11,25 @@ import '../maincss/App.css'
 
 
 export default function App() {
+
+
     const [modalData, setModalData] = useState(null);
+    const [user, setUser] = useState(null); // <-- состояние для пользователя
+
+    useEffect(() => {
+        let userId = 123456; // тестовый Telegram ID для локалки
+
+        if (window.Telegram?.WebApp?.initDataUnsafe?.user?.id) {
+            userId = window.Telegram.WebApp.initDataUnsafe.user.id;
+        }
+
+        fetch(`http://localhost:8080/api/users/${userId}`)
+            .then(res => res.json())
+            .then(user => setUser(user))
+            .catch(err => console.error(err));
+    }, []);
+
+
     // 1. Заголовок
     const StepItem = ({ number, title, onClick }) => {
         return (
@@ -319,6 +337,7 @@ export default function App() {
                             <h2 className="text-xl font-bold text-gray-900 mb-2">Мои записи</h2>
                             <p className="text-gray-600 text-sm">
                                 Записей пока нет — поделитесь с кем-нибудь ссылкой!
+                                {user ? `Привет, ${user.username}!` : "Загрузка пользователя..."}
                             </p>
                         </div>
 

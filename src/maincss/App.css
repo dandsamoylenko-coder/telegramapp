@@ -33,3 +33,23 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;    /* Выравниваем по центру по вертикали */
     max-width: 380px;       /* Ограничиваем максимальную ширину */
 }
+
+.day-button {
+    flex: 1;
+    min-width: 2.5rem;
+    background-color: #f3f4f6;
+    color: #374151;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    text-align: center;
+    transition: all 0.2s ease-in-out;
+}
+
+.day-button:hover {
+    background-color: #e5e7eb;
+}
+
+.day-button-active {
+    background-color: #16a34a; /* зелёный */
+    color: white;
+}

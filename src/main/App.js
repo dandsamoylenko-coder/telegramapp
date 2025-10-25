@@ -17,18 +17,43 @@ export default function App() {
     const [user, setUser] = useState(null); // <-- состояние для пользователя
 
     useEffect(() => {
-        let userId = 123456; // тестовый Telegram ID для локалки
+        if (window.Telegram && window.Telegram.WebApp) {
+            const tgUser = window.Telegram.WebApp.initDataUnsafe?.user;
 
-        if (window.Telegram?.WebApp?.initDataUnsafe?.user?.id) {
-            userId = window.Telegram.WebApp.initDataUnsafe.user.id;
+            if (!tgUser) {
+                console.log("Пользователь не найден в Telegram WebApp.");
+                return;
+            }
+
+            // Сохраняем пользователя в state
+            setUser(tgUser);
+
+            // Извлекаем данные с дефолтными значениями
+            const userId = tgUser.id;
+            const firstName = tgUser.first_name || "Дима";
+            const lastName = tgUser.last_name || "Самойленко";
+            const username = tgUser.username || "1234";
+            const fullName = [firstName, lastName].filter(Boolean).join(" ");
+
+            // Отправляем данные на сервер
+            fetch(`https://tip-necessary-halo-bernard.trycloudflare.com/api/users/${userId}?name=${encodeURIComponent(fullName)}&username=${encodeURIComponent(username)}`, {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+                .then(res => res.json())
+                .then(userFromServer => {
+                    setUser(userFromServer);
+                    console.log("Получен пользователь с сервера:", userFromServer);
+                })
+                .catch(err => {
+                    console.error("Ошибка при получении данных пользователя:", err);
+                });
+
+        } else {
+            console.log("Это не Telegram Web App. Пользователь недоступен.");
         }
-
-        fetch(`http://localhost:8080/api/users/${userId}`)
-            .then(res => res.json())
-            .then(user => setUser(user))
-            .catch(err => console.error(err));
     }, []);
-
 
     // 1. Заголовок
     const StepItem = ({ number, title, onClick }) => {

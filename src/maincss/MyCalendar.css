@@ -1,0 +1,23 @@
+/* MyCalendar.css */
+
+.calendar-container {
+    border: 1px solid #d1d5db;    /* светлая серая рамка */
+    border-radius: 1rem;           /* скругленные углы */
+    overflow: hidden;              /* обрезаем выступающие элементы */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* легкая тень */
+    max-width: 400px;              /* ограничение ширины */
+    width: 100%;                   /* адаптивная ширина */
+    margin-left: 0;
+}
+
+.react-calendar {
+    width: 100% !important;        /* календарь растягивается по контейнеру */
+    border: none;                  /* убираем стандартную рамку */
+}
+
+.react-calendar__tile--active {
+    background-color: #0046f8 !important; /* синий выбранный день */
+    color: white !important;
+    border-radius: 0.5rem;
+}
+

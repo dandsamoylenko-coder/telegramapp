@@ -1,14 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import "../maincss/Modal.css"
 
 const Modal = ({ title, text, onClose }) => {
     return ReactDOM.createPortal(
         <div
-            className="fixed inset-0 flex items-center justify-center bg-black/40 z-[9999]"
+            className="modal-overlay"
             onClick={onClose} // закрытие при клике по затемнению
         >
             <div
-                className="bg-white rounded-xl shadow-lg border-2 border-gray-300 w-80 p-6"
+                className="modal-content"
                 onClick={(e) => e.stopPropagation()} // отменяем закрытие при клике внутрь
             >
                 <h2 className="text-lg font-semibold text-gray-800 mb-2">{title}</h2>

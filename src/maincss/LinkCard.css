@@ -1,0 +1,64 @@
+.link-block-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+.link-block-subtitle {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.link-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    max-width: 390px;
+    width: 100%;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    padding: 0.25rem 0.5rem;
+}
+
+.link-text {
+    flex: 1;
+    color: #a1a6ac;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.link-block-button {
+    width: 32px;
+    height: 32px;
+    background-color: #10b981;
+    border: none;
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.link-block-button:hover {
+    background-color: #059669;
+}
+
+.link-block-button ion-icon {
+    font-size: 1.2rem;
+    color: white;
+}
+
+.link-view {
+    font-size: 0.875rem;
+    color: #2563eb;
+    font-weight: 500;
+    margin-top: 0.25rem;
+    text-decoration: underline;
+}
+
+.link-view:hover {
+    text-decoration: none;
+}

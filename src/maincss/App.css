@@ -1,0 +1,35 @@
+/* Общий стиль для заголовков */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', 'Roboto', sans-serif; /* например, другой шрифт */
+    font-weight: 700; /* жирность */
+    color: #111827;   /* цвет текста */
+    letter-spacing: 0.5px; /* межбуквенный интервал */
+}
+
+.ikonka {
+    display: inline-flex;      /* компактный flex-контейнер */
+    align-items: center;
+    justify-content: center;
+    width: 24px;               /* ширина = ширине иконки */
+    height: 24px;              /* высота = высоте иконки */
+    padding: 0;                /* убираем внутренние отступы */
+    margin: 0;                 /* убираем внешние отступы */
+    line-height: 0;            /* убираем "высоту строки" */
+    cursor: pointer;           /* курсор при наведении */
+}
+
+.ikonka ion-icon {
+    color: #16a34a;            /* зелёная иконка */
+    width: 24px;
+    height: 24px;
+    display: block;            /* убираем внутренние отступы */
+}
+
+
+
+.blockpodskazka {
+    display: flex;          /* Включаем Flexbox */
+    justify-content: flex-start; /* Прижимаем элементы влево */
+    align-items: center;    /* Выравниваем по центру по вертикали */
+    max-width: 380px;       /* Ограничиваем максимальную ширину */
+}

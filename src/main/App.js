@@ -335,7 +335,7 @@ export default function App() {
                         {/* Мои записи */}
                         <div className="mt-8 p-6 bg-white rounded-2xl shadow-md w-full max-w-md">
                             <h2 className="text-xl font-bold text-gray-900 mb-2">Мои записи</h2>
-                            <p className="text-gray-600 text-sm">
+                            <p className="Polzovatel">
                                 Записей пока нет — поделитесь с кем-нибудь ссылкой!
                                 {user ? `Привет, ${user.username}!` : "Загрузка пользователя..."}
                             </p>

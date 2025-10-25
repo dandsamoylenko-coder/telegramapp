@@ -15,7 +15,10 @@ export default function App() {
 
     const [modalData, setModalData] = useState(null);
     const [user, setUser] = useState(null); // <-- состояние для пользователя
-
+    const [logs, setLogs] = useState([]);
+    const addLog = (message) => {
+        setLogs((prev) => [...prev, message]);
+    };
     useEffect(() => {
         if (window.Telegram && window.Telegram.WebApp) {
             const tgUser = window.Telegram.WebApp.initDataUnsafe?.user;
@@ -44,14 +47,14 @@ export default function App() {
                 .then(res => res.json())
                 .then(userFromServer => {
                     setUser(userFromServer);
-                    console.log("Получен пользователь с сервера:", userFromServer);
+                    addLog("Получен пользователь с сервера: " + JSON.stringify(userFromServer));
                 })
                 .catch(err => {
-                    console.error("Ошибка при получении данных пользователя:", err);
+                    addLog("Ошибка при получении данных пользователя: " + err);
                 });
 
         } else {
-            console.log("Это не Telegram Web App. Пользователь недоступен.");
+            addLog("Это не Telegram Web App. Пользователь недоступен.");
         }
     }, []);
 
@@ -366,10 +369,10 @@ export default function App() {
                             </p>
                         </div>
 
-                        <LinkBlock />
-                        <MyCalendar />
-                        <Schedule />
-                        <Services />
+                        <LinkBlock/>
+                        <MyCalendar/>
+                        <Schedule/>
+                        <Services/>
                         {modalData && (
                             <Modal
                                 title={modalData.title}
@@ -377,13 +380,21 @@ export default function App() {
                                 onClose={() => setModalData(null)}
                             />
                         )}
+                        <div className="mt-4 p-2 bg-gray-100 rounded-md w-full max-w-md overflow-auto max-h-48">
+                            <h3 className="font-bold text-gray-700 mb-1">Логи (для отладки):</h3>
+                            {logs.map((log, index) => (
+                                <div key={index} className="text-sm text-gray-800">
+                                    {log}
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 }
             />
 
             {/* Страница настроек */}
-            <Route path="/settings" element={<SettingsPage />} />
-            <Route path="/new-service" element={<NewServicePage />} />
+            <Route path="/settings" element={<SettingsPage/>}/>
+            <Route path="/new-service" element={<NewServicePage/>}/>
         </Routes>
     );
 }
